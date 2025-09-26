@@ -1,0 +1,70 @@
+{
+  "attributes": [
+    {
+      "id": "daily",
+      "label": "日常巡回",
+      "items": [
+        {
+          "id": "boiler-pressure",
+          "title": "ボイラー圧力計",
+          "description": "圧力が規定範囲(0.8-1.1MPa)にあるか確認",
+          "code": "BOL-PR-01"
+        },
+        {
+          "id": "cooling-pump",
+          "title": "冷却水ポンプ",
+          "description": "異音・振動の有無と流量計の正常値を確認",
+          "code": "CWP-02"
+        },
+        {
+          "id": "safety-gate",
+          "title": "安全ゲート",
+          "description": "インターロック動作と警告灯の点灯を確認",
+          "code": "SAFE-GT-11"
+        }
+      ]
+    },
+    {
+      "id": "night",
+      "label": "夜間巡回",
+      "items": [
+        {
+          "id": "compressor",
+          "title": "空気圧縮機",
+          "description": "油面計・温度・異音のチェック",
+          "code": "CMP-03"
+        },
+        {
+          "id": "tank-level",
+          "title": "薬液タンク残量",
+          "description": "液面計が最低ラインを下回っていないか確認",
+          "code": "TNK-LVL-08"
+        }
+      ]
+    },
+    {
+      "id": "weekend",
+      "label": "休日巡回",
+      "items": [
+        {
+          "id": "fire-system",
+          "title": "消火設備",
+          "description": "消火栓とホースの圧力を確認",
+          "code": "FIRE-09"
+        },
+        {
+          "id": "emergency-light",
+          "title": "非常灯",
+          "description": "自動点灯テストで全灯が点くか確認",
+          "code": "EMR-LT-04"
+        },
+        {
+          "id": "battery-room",
+          "title": "バッテリー室",
+          "description": "換気状態・温湿度計の値を記録",
+          "code": "BAT-RM-02"
+        }
+      ]
+    }
+  ]
+}
