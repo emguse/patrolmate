@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1d3557" />
+  <title>PatrolMate</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>巡回点検記録</h1>
+    <p class="subtitle">オフライン対応PWAプロトタイプ</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>巡回設定</h2>
+      <form id="patrol-form" class="form-grid">
+        <label>
+          担当者
+          <input type="text" id="operator" name="operator" placeholder="例: 佐藤" required />
+        </label>
+        <label>
+          巡回日
+          <input type="date" id="patrol-date" name="patrol-date" required />
+        </label>
+        <label>
+          巡回属性
+          <select id="patrol-attribute" name="patrol-attribute" required>
+            <option value="">選択してください</option>
+          </select>
+        </label>
+        <button type="submit" class="primary">巡回リストを読み込む</button>
+      </form>
+    </section>
+
+    <section class="card" id="patrol-section" hidden>
+      <div class="section-header">
+        <h2>巡回リスト</h2>
+        <button id="reset-session" class="secondary">設定をやり直す</button>
+      </div>
+      <div id="patrol-meta"></div>
+      <ol id="patrol-list" class="patrol-list"></ol>
+    </section>
+
+    <section class="card" id="sync-section">
+      <h2>同期</h2>
+      <p>巡回結果はローカルに保存され、安定した通信環境で同期を実行できます。</p>
+      <button id="sync-button" class="primary">同期を実行</button>
+      <p id="sync-status" class="status"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 PatrolMate Prototype</p>
+  </footer>
+
+  <template id="patrol-item-template">
+    <li class="patrol-item">
+      <div class="item-main">
+        <h3 class="item-title"></h3>
+        <p class="item-description"></p>
+        <p class="item-code"></p>
+      </div>
+      <div class="item-actions">
+        <label class="toggle">
+          <input type="checkbox" />
+          <span>完了</span>
+        </label>
+        <button class="capture secondary">コード読取</button>
+      </div>
+    </li>
+  </template>
+
+  <dialog id="capture-dialog">
+    <form method="dialog" class="capture-form">
+      <h3>コード読取</h3>
+      <p>現場で撮影したコード値を入力してください。</p>
+      <input type="text" id="capture-input" placeholder="例: TAG-1203" required />
+      <menu>
+        <button value="cancel">キャンセル</button>
+        <button value="confirm" class="primary">保存</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="assets/app.js" type="module"></script>
+</body>
+</html>
