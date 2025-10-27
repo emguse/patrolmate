@@ -1,1 +1,8 @@
-node_modules/
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+instance/
+.venv/
+venv/
+.env
