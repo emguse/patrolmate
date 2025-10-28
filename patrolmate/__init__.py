@@ -4,7 +4,7 @@ from __future__ import annotations
 from flask import Flask
 
 from .extensions import db
-from .routes import api_bp
+from .routes import api_bp, pages_bp
 
 
 def create_app(test_config: dict | None = None) -> Flask:
@@ -31,9 +31,10 @@ def create_app(test_config: dict | None = None) -> Flask:
     with app.app_context():
         db.create_all()
 
+    app.register_blueprint(pages_bp)
     app.register_blueprint(api_bp)
 
-    @app.get("/")
+    @app.get("/health")
     def healthcheck() -> dict[str, str]:
         """Simple healthcheck endpoint."""
         return {"status": "ok"}

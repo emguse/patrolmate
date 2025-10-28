@@ -3,13 +3,20 @@ from __future__ import annotations
 
 from http import HTTPStatus
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, render_template, request
 
 from .extensions import db
 from .models import PatrolLog
 
 
 api_bp = Blueprint("api", __name__, url_prefix="/api")
+pages_bp = Blueprint("pages", __name__)
+
+
+@pages_bp.get("/")
+def dashboard():
+    """Render the patrol log dashboard."""
+    return render_template("index.html")
 
 
 @api_bp.get("/logs")
