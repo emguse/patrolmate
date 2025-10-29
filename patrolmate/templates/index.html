@@ -22,47 +22,64 @@
       }
 
       .card {
-        width: min(960px, 100%);
+        width: min(1100px, 100%);
         background: rgba(15, 23, 42, 0.85);
-        border-radius: 24px;
-        padding: 2.5rem;
+        border-radius: 28px;
+        padding: clamp(2rem, 3vw, 3rem);
         box-shadow: 0 30px 60px rgba(15, 23, 42, 0.6);
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(148, 163, 184, 0.15);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        display: grid;
+        gap: clamp(1.5rem, 2.5vw, 2.5rem);
       }
 
-      h1 {
-        margin: 0 0 1.5rem;
-        font-size: clamp(2rem, 5vw, 3rem);
+      header h1 {
+        margin: 0 0 0.5rem;
+        font-size: clamp(2rem, 4vw, 3.25rem);
         letter-spacing: 0.05em;
-        text-transform: uppercase;
+      }
+
+      header p {
+        margin: 0;
+        color: rgba(226, 232, 240, 0.75);
+      }
+
+      section h2 {
+        margin-top: 0;
+        font-size: 1.5rem;
       }
 
       form {
         display: grid;
+        gap: 1.25rem;
+      }
+
+      .filters-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 1rem;
-        margin-bottom: 2rem;
       }
 
       label {
-        display: flex;
-        flex-direction: column;
+        display: grid;
         gap: 0.5rem;
         font-weight: 600;
+        font-size: 0.95rem;
       }
 
       input,
+      select,
       textarea {
         padding: 0.75rem 1rem;
         border-radius: 12px;
         border: 1px solid rgba(148, 163, 184, 0.35);
-        background: rgba(15, 23, 42, 0.4);
+        background: rgba(15, 23, 42, 0.45);
         color: inherit;
-        resize: vertical;
         font: inherit;
       }
 
       input:focus,
+      select:focus,
       textarea:focus {
         outline: 2px solid rgba(94, 234, 212, 0.5);
         border-color: rgba(94, 234, 212, 0.5);
@@ -70,7 +87,7 @@
 
       button {
         justify-self: start;
-        padding: 0.75rem 1.5rem;
+        padding: 0.75rem 1.75rem;
         border-radius: 999px;
         border: none;
         background: linear-gradient(135deg, #22d3ee, #a855f7);
@@ -78,7 +95,7 @@
         font-weight: 700;
         letter-spacing: 0.02em;
         cursor: pointer;
-        transition: transform 150ms ease, box-shadow 150ms ease;
+        transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
       }
 
       button:hover {
@@ -98,12 +115,143 @@
         color: #fca5a5;
       }
 
-      ul {
-        list-style: none;
+      .status.success {
+        color: #5eead4;
+      }
+
+      .empty-state {
+        padding: 2rem;
+        border: 1px dashed rgba(148, 163, 184, 0.35);
+        border-radius: 20px;
+        text-align: center;
+        color: rgba(148, 163, 184, 0.9);
+      }
+
+      .targets-grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .target-card {
+        border-radius: 22px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        background: rgba(15, 23, 42, 0.65);
+        padding: 1.5rem;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      .target-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .target-header h3 {
         margin: 0;
-        padding: 0;
+        font-size: 1.35rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.03em;
+        background: rgba(45, 212, 191, 0.15);
+        color: #5eead4;
+        border: 1px solid rgba(94, 234, 212, 0.4);
+        white-space: nowrap;
+      }
+
+      .badge.attribute {
+        background: rgba(129, 140, 248, 0.2);
+        border-color: rgba(129, 140, 248, 0.45);
+        color: #c7d2fe;
+      }
+
+      .target-meta {
+        margin: 0;
+        color: rgba(226, 232, 240, 0.75);
+      }
+
+      .target-schedule {
+        margin: 0;
+        color: rgba(148, 163, 184, 0.85);
+        font-size: 0.9rem;
+      }
+
+      .target-items {
         display: grid;
         gap: 1rem;
+      }
+
+      .target-item {
+        border-radius: 16px;
+        padding: 1rem 1.25rem;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        background: rgba(15, 23, 42, 0.55);
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .target-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+      }
+
+      .item-name {
+        font-weight: 600;
+        font-size: 1.05rem;
+      }
+
+      .item-guidance {
+        margin: 0;
+        font-size: 0.9rem;
+        color: rgba(226, 232, 240, 0.7);
+      }
+
+      .target-input {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      .input-with-unit {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .input-with-unit span {
+        font-size: 0.95rem;
+        color: rgba(226, 232, 240, 0.8);
+      }
+
+      .checkbox-field {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .checkbox-field input {
+        width: 1.1rem;
+        height: 1.1rem;
+      }
+
+      .actions-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
       }
 
       .log-entry {
@@ -112,81 +260,132 @@
         background: rgba(15, 23, 42, 0.65);
         border: 1px solid rgba(148, 163, 184, 0.2);
         box-shadow: 0 12px 24px rgba(15, 23, 42, 0.45);
+        display: grid;
+        gap: 0.75rem;
       }
 
-      .log-entry h2 {
-        margin: 0 0 0.75rem;
-        font-size: 1.35rem;
+      .log-entry h3 {
+        margin: 0;
+        font-size: 1.25rem;
       }
 
       .log-entry time {
-        display: block;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: rgba(148, 163, 184, 0.8);
-        margin-bottom: 0.75rem;
       }
 
-      .empty-state {
-        padding: 2rem;
-        border: 1px dashed rgba(148, 163, 184, 0.3);
-        border-radius: 18px;
-        text-align: center;
-        color: rgba(148, 163, 184, 0.9);
+      .log-notes {
+        margin: 0;
+        font-size: 0.95rem;
+        white-space: pre-wrap;
+        line-height: 1.6;
       }
 
-      @media (max-width: 640px) {
+      @media (max-width: 720px) {
         body {
           padding: 1rem;
         }
 
         .card {
-          padding: 1.75rem;
+          padding: 1.5rem;
         }
       }
     </style>
   </head>
   <body>
     <div class="card">
-      <h1>巡回ログ</h1>
-      <p>最新の巡回記録を共有し、チーム全体で状況を把握しましょう。</p>
+      <header>
+        <h1>巡回計画ダッシュボード</h1>
+        <p>
+          巡回日と巡回属性を選択し、対象施設の点検項目を確認して入力できます。
+        </p>
+      </header>
 
-      <form id="log-form" autocomplete="off">
-        <label>
-          タイトル
-          <input type="text" name="title" required maxlength="120" />
-        </label>
-        <label>
-          メモ
-          <textarea name="notes" rows="4" placeholder="必要に応じて詳細を入力してください"></textarea>
-        </label>
-        <button type="submit">ログを追加</button>
-        <div class="status" aria-live="polite"></div>
-      </form>
+      <section aria-labelledby="filters-heading">
+        <h2 id="filters-heading">巡回条件</h2>
+        <form id="filters-form" autocomplete="off">
+          <div class="filters-grid">
+            <label>
+              巡回日
+              <input type="date" name="date" required />
+            </label>
+            <label>
+              巡回属性
+              <select name="attribute" required>
+                <option value="" disabled selected>巡回属性を選択</option>
+                <option value="時間指定">時間指定</option>
+                <option value="日次">日次</option>
+                <option value="週次">週次</option>
+                <option value="月次">月次</option>
+                <option value="年次">年次</option>
+              </select>
+            </label>
+            <label>
+              部屋キーワード
+              <input
+                type="text"
+                name="room"
+                placeholder="例：電気室、サーバー"
+              />
+            </label>
+          </div>
+          <div class="actions-row">
+            <button type="submit">巡回対象を表示</button>
+            <div id="filter-status" class="status" aria-live="polite"></div>
+          </div>
+        </form>
+      </section>
 
-      <section>
-        <h2>履歴</h2>
+      <section aria-labelledby="targets-heading">
+        <div class="actions-row">
+          <h2 id="targets-heading">巡回対象リスト</h2>
+          <button id="save-results" type="button" disabled>巡回結果を保存</button>
+        </div>
+        <div id="save-status" class="status" aria-live="polite"></div>
+        <div id="targets" class="empty-state">
+          条件を入力して「巡回対象を表示」を押してください。
+        </div>
+      </section>
+
+      <section aria-labelledby="history-heading">
+        <h2 id="history-heading">保存済み巡回記録</h2>
         <div id="logs" class="empty-state">読み込み中...</div>
       </section>
     </div>
 
     <template id="log-template">
       <article class="log-entry">
-        <h2></h2>
+        <h3></h3>
         <time></time>
-        <p></p>
+        <p class="log-notes"></p>
       </article>
     </template>
 
     <script>
+      const weekdays = ["月", "火", "水", "木", "金", "土", "日"];
+
       let logsContainer = document.getElementById("logs");
       const logTemplate = document.getElementById("log-template");
-      const statusEl = document.querySelector(".status");
-      const form = document.getElementById("log-form");
-      const submitButton = form.querySelector("button");
+      let targetsContainer = document.getElementById("targets");
+
+      const filtersForm = document.getElementById("filters-form");
+      const filterStatus = document.getElementById("filter-status");
+      const saveButton = document.getElementById("save-results");
+      const saveStatus = document.getElementById("save-status");
+
+      let currentTargets = [];
+
+      function replaceNode(current, nextNode) {
+        current.replaceWith(nextNode);
+        return nextNode;
+      }
+
+      function replaceTargets(nextNode) {
+        targetsContainer = replaceNode(targetsContainer, nextNode);
+      }
 
       function replaceLogs(nextNode) {
-        logsContainer.replaceWith(nextNode);
-        logsContainer = nextNode;
+        logsContainer = replaceNode(logsContainer, nextNode);
       }
 
       function formatDate(isoString) {
@@ -197,70 +396,393 @@
         }).format(date);
       }
 
-      function showEmptyState(message) {
-        const empty = document.createElement("div");
-        empty.className = "empty-state";
-        empty.textContent = message;
-        empty.id = "logs";
-        replaceLogs(empty);
-      }
+      function describeSchedule(target) {
+        const schedule = target.schedule ?? {};
+        const parts = [];
 
-      async function loadLogs() {
-        try {
-          const response = await fetch("/api/logs");
-          if (!response.ok) {
-            throw new Error("ログの取得に失敗しました");
-          }
-          const logs = await response.json();
-          renderLogs(logs);
-        } catch (error) {
-          showEmptyState(error.message);
+        if (target.time_window) {
+          parts.push(`時間帯 ${target.time_window}`);
         }
+
+        const daysOfWeek = Array.isArray(schedule.days_of_week)
+          ? schedule.days_of_week
+          : null;
+        if (daysOfWeek && daysOfWeek.length) {
+          if (daysOfWeek.length === 7) {
+            parts.push("毎日");
+          } else {
+            const labels = daysOfWeek
+              .map((index) => weekdays[index] + "曜")
+              .join("・");
+            parts.push(labels);
+          }
+        }
+
+        const daysOfMonth = Array.isArray(schedule.days_of_month)
+          ? schedule.days_of_month
+          : null;
+        if (daysOfMonth && daysOfMonth.length) {
+          parts.push(daysOfMonth.map((day) => `${day}日`).join("・"));
+        }
+
+        const months = Array.isArray(schedule.months) ? schedule.months : null;
+        if (months && months.length) {
+          parts.push(months.map((month) => `${month}月`).join("・"));
+        }
+
+        return parts.join(" / ");
       }
 
-      function renderLogs(logs) {
-        if (!Array.isArray(logs) || logs.length === 0) {
-          showEmptyState("まだ巡回ログはありません");
+      function createItemElement(target, item) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "target-item";
+        wrapper.dataset.itemId = item.id;
+
+        const header = document.createElement("div");
+        header.className = "target-item-header";
+
+        const name = document.createElement("span");
+        name.className = "item-name";
+        name.textContent = item.name;
+        header.appendChild(name);
+
+        if (item.category) {
+          const badge = document.createElement("span");
+          badge.className = "badge";
+          badge.textContent = item.category;
+          header.appendChild(badge);
+        }
+
+        wrapper.appendChild(header);
+
+        if (item.guidance) {
+          const guidance = document.createElement("p");
+          guidance.className = "item-guidance";
+          guidance.textContent = item.guidance;
+          wrapper.appendChild(guidance);
+        }
+
+        const inputContainer = document.createElement("div");
+        inputContainer.className = "target-input";
+
+        if (item.type === "numeric") {
+          const inputWrap = document.createElement("div");
+          inputWrap.className = "input-with-unit";
+
+          const input = document.createElement("input");
+          input.type = "number";
+          input.inputMode = "decimal";
+          input.placeholder = "数値を入力";
+          input.dataset.target = target.id;
+          input.dataset.item = item.id;
+          input.dataset.type = "numeric";
+          input.autocomplete = "off";
+
+          inputWrap.appendChild(input);
+
+          if (item.unit) {
+            const unit = document.createElement("span");
+            unit.textContent = item.unit;
+            inputWrap.appendChild(unit);
+          }
+
+          inputContainer.appendChild(inputWrap);
+        } else if (item.type === "status") {
+          const select = document.createElement("select");
+          select.dataset.target = target.id;
+          select.dataset.item = item.id;
+          select.dataset.type = "status";
+
+          const placeholder = document.createElement("option");
+          placeholder.value = "";
+          placeholder.textContent = "選択してください";
+          select.appendChild(placeholder);
+
+          if (Array.isArray(item.options)) {
+            item.options.forEach((option) => {
+              const opt = document.createElement("option");
+              opt.value = option;
+              opt.textContent = option;
+              select.appendChild(opt);
+            });
+          }
+
+          inputContainer.appendChild(select);
+        } else if (item.type === "boolean") {
+          const label = document.createElement("label");
+          label.className = "checkbox-field";
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.dataset.target = target.id;
+          checkbox.dataset.item = item.id;
+          checkbox.dataset.type = "boolean";
+
+          label.appendChild(checkbox);
+          const span = document.createElement("span");
+          span.textContent = item.check_label || "確認";
+          label.appendChild(span);
+
+          inputContainer.appendChild(label);
+        }
+
+        wrapper.appendChild(inputContainer);
+        return wrapper;
+      }
+
+      function renderTargets(targets) {
+        if (!Array.isArray(targets) || targets.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "empty-state";
+          empty.id = "targets";
+          empty.textContent = "条件に一致する巡回対象がありません";
+          replaceTargets(empty);
           return;
         }
 
-        const list = document.createElement("ul");
-        list.id = "logs";
+        const grid = document.createElement("div");
+        grid.className = "targets-grid";
+        grid.id = "targets";
 
-        logs.forEach((log) => {
-          const node = logTemplate.content.firstElementChild.cloneNode(true);
-          node.querySelector("h2").textContent = log.title;
-          node.querySelector("time").textContent = formatDate(log.created_at);
-          node.querySelector("p").textContent = log.notes || "メモはありません";
-          list.appendChild(node);
+        targets.forEach((target) => {
+          const card = document.createElement("article");
+          card.className = "target-card";
+          card.dataset.targetId = target.id;
+
+          const header = document.createElement("div");
+          header.className = "target-header";
+
+          const title = document.createElement("h3");
+          const locationParts = [target.building, target.floor, target.room]
+            .filter(Boolean)
+            .join(" ");
+          title.textContent = locationParts || "巡回対象";
+          header.appendChild(title);
+
+          if (target.patrol_attribute) {
+            const attrBadge = document.createElement("span");
+            attrBadge.className = "badge attribute";
+            attrBadge.textContent = target.patrol_attribute;
+            header.appendChild(attrBadge);
+          }
+
+          card.appendChild(header);
+
+          const meta = document.createElement("p");
+          meta.className = "target-meta";
+          meta.textContent = target.description || "点検項目を入力してください";
+          card.appendChild(meta);
+
+          const scheduleText = describeSchedule(target);
+          if (scheduleText) {
+            const schedule = document.createElement("p");
+            schedule.className = "target-schedule";
+            schedule.textContent = scheduleText;
+            card.appendChild(schedule);
+          }
+
+          const itemsContainer = document.createElement("div");
+          itemsContainer.className = "target-items";
+
+          if (Array.isArray(target.items) && target.items.length > 0) {
+            target.items.forEach((item) => {
+              itemsContainer.appendChild(createItemElement(target, item));
+            });
+          } else {
+            const notice = document.createElement("p");
+            notice.textContent = "点検項目が設定されていません";
+            itemsContainer.appendChild(notice);
+          }
+
+          card.appendChild(itemsContainer);
+          grid.appendChild(card);
         });
 
-        replaceLogs(list);
+        replaceTargets(grid);
       }
 
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        statusEl.textContent = "送信中...";
-        const formData = new FormData(form);
-        const payload = Object.fromEntries(formData.entries());
-        const title = (payload.title || "").trim();
-        const notes = (payload.notes || "").trim();
+      function collectResults() {
+        const results = [];
+        const missing = [];
 
-        if (!title) {
-          statusEl.textContent = "タイトルを入力してください";
+        currentTargets.forEach((target) => {
+          const items = [];
+          if (!Array.isArray(target.items)) {
+            return;
+          }
+
+          target.items.forEach((item) => {
+            const selector = `[data-target="${target.id}"][data-item="${item.id}"]`;
+            const field = document.querySelector(selector);
+            if (!field) {
+              return;
+            }
+
+            if (item.type === "numeric") {
+              const value = field.value.trim();
+              if (!value) {
+                missing.push(`${target.room || target.id} : ${item.name}`);
+                return;
+              }
+              const unit = item.unit ? ` ${item.unit}` : "";
+              items.push({
+                item,
+                rawValue: value,
+                displayValue: `${value}${unit}`,
+                booleanValue: null,
+              });
+            } else if (item.type === "status") {
+              const value = field.value;
+              if (!value) {
+                missing.push(`${target.room || target.id} : ${item.name}`);
+                return;
+              }
+              items.push({
+                item,
+                rawValue: value,
+                displayValue: value,
+                booleanValue: null,
+              });
+            } else if (item.type === "boolean") {
+              const checked = field.checked;
+              const label = item.check_label || "確認";
+              items.push({
+                item,
+                rawValue: checked,
+                displayValue: checked ? `確認済み（${label}）` : `未確認（${label}）`,
+                booleanValue: checked,
+              });
+            }
+          });
+
+          results.push({ target, items });
+        });
+
+        return { results, missing };
+      }
+
+      function buildLogNotes(results, context) {
+        const lines = [];
+        lines.push(`巡回日: ${context.date || "未指定"}`);
+        lines.push(`巡回属性: ${context.attribute || "未指定"}`);
+        lines.push(`部屋キーワード: ${context.room || "指定なし"}`);
+        lines.push("");
+
+        results.forEach(({ target, items }) => {
+          const location = [target.building, target.floor, target.room]
+            .filter(Boolean)
+            .join(" ");
+          lines.push(
+            `■ ${location || target.id} (${target.patrol_attribute || "属性なし"})`
+          );
+
+          const schedule = describeSchedule(target);
+          if (schedule) {
+            lines.push(`  スケジュール: ${schedule}`);
+          }
+
+          items.forEach(({ item, displayValue, booleanValue }) => {
+            if (item.type === "boolean") {
+              const mark = booleanValue ? "✅" : "❌";
+              const label = item.check_label || displayValue;
+              lines.push(`  - ${item.name}（${item.category}）: ${mark} ${label}`);
+            } else {
+              lines.push(
+                `  - ${item.name}（${item.category}）: ${displayValue || "-"}`
+              );
+            }
+          });
+
+          lines.push("");
+        });
+
+        return lines.join("\n").trim();
+      }
+
+      async function handleFiltersSubmit(event) {
+        event.preventDefault();
+        filterStatus.textContent = "巡回対象を読み込み中...";
+        saveStatus.textContent = "";
+
+        const formData = new FormData(filtersForm);
+        const params = new URLSearchParams(formData);
+
+        try {
+          const response = await fetch(`/api/targets?${params.toString()}`);
+          if (!response.ok) {
+            throw new Error("巡回対象の取得に失敗しました");
+          }
+
+          const data = await response.json();
+          currentTargets = Array.isArray(data.targets) ? data.targets : [];
+
+          renderTargets(currentTargets);
+
+          if (currentTargets.length === 0) {
+            filterStatus.textContent = "条件に一致する巡回対象がありません";
+            saveButton.disabled = true;
+          } else {
+            filterStatus.textContent = `${currentTargets.length}件の巡回対象を表示しています`;
+            saveButton.disabled = false;
+          }
+        } catch (error) {
+          filterStatus.textContent = error.message;
+          renderTargets([]);
+          currentTargets = [];
+          saveButton.disabled = true;
+        }
+      }
+
+      async function handleSaveResults() {
+        if (!currentTargets.length) {
+          saveStatus.textContent = "巡回対象を取得してから保存してください";
           return;
         }
 
-        submitButton.disabled = true;
+        const { results, missing } = collectResults();
+        if (missing.length) {
+          saveStatus.textContent = `未入力の項目があります: ${missing.join(", ")}`;
+          return;
+        }
+
+        const dateValue = filtersForm.elements["date"].value;
+        const attributeValue = filtersForm.elements["attribute"].value;
+        const roomValue = filtersForm.elements["room"].value.trim();
+
+        const titleParts = [];
+        if (dateValue) {
+          titleParts.push(dateValue);
+        }
+        if (attributeValue) {
+          titleParts.push(`${attributeValue}巡回`);
+        }
+        if (roomValue) {
+          titleParts.push(roomValue);
+        }
+        if (titleParts.length === 0) {
+          titleParts.push("巡回結果");
+        }
+
+        const notes = buildLogNotes(results, {
+          date: dateValue,
+          attribute: attributeValue,
+          room: roomValue,
+        });
+
+        const payload = {
+          title: titleParts.join(" "),
+          notes,
+        };
+
+        saveStatus.textContent = "保存中...";
+        saveStatus.classList.remove("success");
+        saveButton.disabled = true;
 
         try {
           const response = await fetch("/api/logs", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              title,
-              notes: notes || null,
-            }),
+            body: JSON.stringify(payload),
           });
 
           if (!response.ok) {
@@ -276,18 +798,60 @@
             throw new Error(message);
           }
 
-          form.reset();
-          statusEl.textContent = "保存しました";
-          setTimeout(() => {
-            statusEl.textContent = "";
-          }, 2000);
-          await loadLogs();
+          saveStatus.textContent = "巡回結果を保存しました";
+          saveStatus.classList.add("success");
+          loadLogs();
         } catch (error) {
-          statusEl.textContent = error.message;
+          saveStatus.textContent = error.message;
         } finally {
-          submitButton.disabled = false;
+          saveButton.disabled = currentTargets.length === 0;
         }
-      });
+      }
+
+      async function loadLogs() {
+        try {
+          const response = await fetch("/api/logs");
+          if (!response.ok) {
+            throw new Error("ログの取得に失敗しました");
+          }
+          const logs = await response.json();
+          renderLogs(logs);
+        } catch (error) {
+          const errorNode = document.createElement("div");
+          errorNode.className = "empty-state";
+          errorNode.id = "logs";
+          errorNode.textContent = error.message;
+          replaceLogs(errorNode);
+        }
+      }
+
+      function renderLogs(logs) {
+        if (!Array.isArray(logs) || logs.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "empty-state";
+          empty.id = "logs";
+          empty.textContent = "まだ巡回記録はありません";
+          replaceLogs(empty);
+          return;
+        }
+
+        const list = document.createElement("div");
+        list.id = "logs";
+        list.className = "targets-grid";
+
+        logs.forEach((log) => {
+          const node = logTemplate.content.firstElementChild.cloneNode(true);
+          node.querySelector("h3").textContent = log.title;
+          node.querySelector("time").textContent = formatDate(log.created_at);
+          node.querySelector(".log-notes").textContent = log.notes || "詳細はありません";
+          list.appendChild(node);
+        });
+
+        replaceLogs(list);
+      }
+
+      filtersForm.addEventListener("submit", handleFiltersSubmit);
+      saveButton.addEventListener("click", handleSaveResults);
 
       loadLogs();
     </script>
